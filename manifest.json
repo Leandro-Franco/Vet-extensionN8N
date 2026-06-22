@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "VetSmart — SimplesVet para n8n",
+  "version": "1.0.0",
+  "description": "Captura dados de atendimento clínico no SimplesVet e envia para n8n.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://app.simples.vet/*",
+    "http://localhost:5678/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://app.simples.vet/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "VetSmart — Configurações"
+  }
+}
