@@ -1,4 +1,4 @@
-const DEFAULT_URL   = 'http://localhost:5678/webhook-test/teste-json-mile';
+const DEFAULT_URL   = 'https://n8n-n8n.stlrvo.easypanel.host/webhook-test/360b389c-c603-478b-9da3-9b2e7529f74e';
 const DEFAULT_TOKEN = 'secret';
 
 const urlInput   = document.getElementById('webhook-url');

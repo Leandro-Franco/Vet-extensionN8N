@@ -10,7 +10,7 @@ const PANEL_ID = 'svext-panel';
 const WEBHOOK_TIMEOUT_MS = 10000;
 
 // Defaults — overridden by values saved in popup settings
-let WEBHOOK_URL = 'http://localhost:5678/webhook-test/teste-json-mile';
+let WEBHOOK_URL = 'https://n8n-n8n.stlrvo.easypanel.host/webhook-test/360b389c-c603-478b-9da3-9b2e7529f74e';
 let TOKEN = 'secret';
 
 // ============================================================
@@ -204,24 +204,21 @@ function validatePayload(payload) {
 // Webhook
 // ============================================================
 
+// O fetch é delegado ao background service worker para escapar do
+// Content-Security-Policy da página do SimplesVet (connect-src).
 async function sendToN8N(payload) {
-  const controller = new AbortController();
-  const timerId = setTimeout(() => controller.abort(), WEBHOOK_TIMEOUT_MS);
-  try {
-    const response = await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      signal: controller.signal,
-    });
-    clearTimeout(timerId);
-    if (response.status === 200 || response.status === 201) return { ok: true };
-    return { ok: false, error: `HTTP ${response.status}` };
-  } catch (err) {
-    clearTimeout(timerId);
-    if (err.name === 'AbortError') return { ok: false, error: 'timeout (10s)' };
-    return { ok: false, error: err.message || 'sem conexão' };
-  }
+  return new Promise((resolve) => {
+    chrome.runtime.sendMessage(
+      { type: 'SEND_TO_N8N', url: WEBHOOK_URL, payload, timeoutMs: WEBHOOK_TIMEOUT_MS },
+      (response) => {
+        if (chrome.runtime.lastError) {
+          resolve({ ok: false, error: chrome.runtime.lastError.message || 'Erro de extensão' });
+        } else {
+          resolve(response);
+        }
+      }
+    );
+  });
 }
 
 // ============================================================
