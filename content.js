@@ -10,7 +10,7 @@ const PANEL_ID = 'svext-panel';
 const WEBHOOK_TIMEOUT_MS = 10000;
 
 // Defaults — overridden by values saved in popup settings
-let WEBHOOK_URL = 'https://n8n-n8n.stlrvo.easypanel.host/webhook-test/360b389c-c603-478b-9da3-9b2e7529f74e';
+export const WEBHOOK_URL = 'https://n8n-n8n.stlrvo.easypanel.host/webhook-test/360b389c-c603-478b-9da3-9b2e7529f74e';
 let TOKEN = 'secret';
 
 // ============================================================
@@ -86,6 +86,12 @@ function todayFormatted() {
   return `${dd}/${mm}/${now.getFullYear()}`;
 }
 
+function monthFormatted() {
+  const now = new Date();
+  const getMonth = now.toLocaleString('pt-BR', { month: 'long' });
+  return getMonth.toUpperCase();
+}
+
 // ============================================================
 // Data extraction
 // ============================================================
@@ -158,6 +164,7 @@ function extractPatologia() {
 function captureCurrentPageData() {
   const { paciente, prontuario } = extractPacienteProntuario();
   return {
+    mes: monthFormatted(),
     data: todayFormatted(),
     prontuario,
     paciente,
@@ -175,12 +182,14 @@ function captureCurrentPageData() {
 // ============================================================
 
 function getPayloadFromEditableFields() {
+  const month = monthFormatted();
   const val = (id) => {
     const el = document.getElementById(id);
     return el ? el.value.trim() : '';
   };
   return {
     token: TOKEN,
+    mes: month,
     data: val('svext-data'),
     prontuario: val('svext-prontuario'),
     paciente: val('svext-paciente'),
@@ -193,7 +202,7 @@ function getPayloadFromEditableFields() {
   };
 }
 
-const REQUIRED_FIELDS = ['data', 'prontuario', 'paciente', 'especie', 'sexo',
+const REQUIRED_FIELDS = ['mes','data', 'prontuario', 'paciente', 'especie', 'sexo',
   'tutor_responsavel', 'tipo_atendimento', 'veterinario_responsavel', 'patologia'];
 
 function validatePayload(payload) {
