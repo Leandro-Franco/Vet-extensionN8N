@@ -10,7 +10,7 @@ const PANEL_ID = 'svext-panel';
 const WEBHOOK_TIMEOUT_MS = 10000;
 
 // Defaults — overridden by values saved in popup settings
-export const WEBHOOK_URL = 'https://n8n-n8n.stlrvo.easypanel.host/webhook-test/360b389c-c603-478b-9da3-9b2e7529f74e';
+let WEBHOOK_URL = 'https://n8n-n8n.stlrvo.easypanel.host/webhook/e3dfce07-c096-4228-94bb-2a0f09d9f48c';
 let TOKEN = 'secret';
 
 // ============================================================

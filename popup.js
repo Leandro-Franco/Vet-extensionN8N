@@ -1,5 +1,4 @@
-import { WEBHOOK_URL } from "./content";
-const DEFAULT_URL   = WEBHOOK_URL;
+const DEFAULT_URL   = 'https://n8n-n8n.stlrvo.easypanel.host/webhook/e3dfce07-c096-4228-94bb-2a0f09d9f48c';
 const DEFAULT_TOKEN = 'secret';
 
 const urlInput   = document.getElementById('webhook-url');
