@@ -72,13 +72,8 @@ Possíveis melhorias futuras:
 
 ## Licença
 
-Defina uma licença antes de publicar o projeto.
-
-Sugestões comuns:
 
 ```text
-MIT
-Apache-2.0
 Proprietary
 ```
 
