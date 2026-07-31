@@ -73,12 +73,7 @@ Possíveis melhorias futuras:
 
 ## Licença
 
-
-```text
-Proprietary
-```
-
-Para uso comercial restrito, considere manter o projeto como privado ou usar uma licença proprietária.
+MIT — uso, cópia, modificação e distribuição livres, inclusive para fins comerciais, mantendo o aviso de copyright. Texto completo em `LICENSE`.
 
 ---
 
