@@ -1,16 +1,17 @@
-# SimplesVet → n8n Extension
+# Do ambiente de trabalho → Extensão N8N
 
-Extensão de navegador para auxiliar no registro manual de atendimentos veterinários do SimplesVet em uma planilha via webhook do n8n.
+Extensão de navegador para auxiliar no registro manual de atendimentos veterinários do ambiente de trabalho 
+-no caso 'SimplesVet' em uma planilha via webhook do n8n.
 
-A extensão funciona como uma camada de captura assistida dentro do navegador: ela lê dados visíveis da página do SimplesVet, permite revisão e edição manual das informações capturadas e envia o payload final para um webhook configurado no n8n.
+A extensão funciona como uma camada de captura assistida dentro do navegador: ela lê dados visíveis da página do ambiente, permite revisão e edição manual das informações capturadas e envia o payload final para um webhook configurado no n8n.
 
 ## Objetivo
 
-Automatizar parte do fluxo repetitivo de preenchimento de planilhas clínicas veterinárias, sem alterar a estrutura original da planilha e sem modificar o funcionamento principal do SimplesVet.
+Automatizar parte do fluxo repetitivo de preenchimento de planilhas clínicas veterinárias, sem alterar a estrutura original da planilha e sem modificar o funcionamento principal do ambiente.
 
 A extensão foi pensada para:
 
-* capturar dados do animal/prontuário na página do SimplesVet;
+* capturar dados do animal/prontuário na página do ambiente;
 * permitir correção manual antes do envio;
 * enviar os dados para um webhook do n8n;
 * registrar cada atendimento como uma nova linha no Google Sheets;
@@ -21,7 +22,7 @@ A extensão foi pensada para:
 
 ## Fluxo de uso
 
-1. A médica veterinária acessa o SimplesVet normalmente.
+1. A médica veterinária acessa o ambiente normalmente.
 2. Faz login manualmente.
 3. Abre a área de atendimento clínico.
 4. Pesquisa o prontuário do animal.
@@ -83,4 +84,4 @@ Para uso comercial restrito, considere manter o projeto como privado ou usar uma
 
 ## Autor
 
-Projeto desenvolvido para automação de fluxo clínico veterinário com SimplesVet, n8n e Google Sheets.
+Projeto desenvolvido para automação de fluxo clínico veterinário com ambiente desejado, n8n e Google Sheets.
