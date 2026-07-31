@@ -1,11 +1,11 @@
 // ============================================================
-// VetSmart Extension — background.js (service worker)
-// Executa o fetch para o n8n fora do CSP da página host.
+// um - AU — background.js (service worker)
+// Executa o fetch para o webhook fora do CSP da página host.
 // Content scripts enviam mensagens; este worker faz a requisição.
 // ============================================================
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-  if (message.type !== 'SEND_TO_N8N') return false;
+  if (message.type !== 'SEND_TO_WEBHOOK') return false;
 
   const { url, payload, timeoutMs } = message;
   const controller = new AbortController();

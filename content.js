@@ -1,21 +1,16 @@
 // ============================================================
-// VetSmart Extension — content.js
-// Captura dados de atendimento clínico no SimplesVet e envia
-// para n8n webhook. Somente ativo para KAMILE TORRES.
+// um - AU — content.js
+// Captura dados de atendimento clínico na página do sistema e
+// envia para o webhook configurado.
 // ============================================================
 
-const LOG = '[SimplesVetExt]';
+const LOG = '[um-AU]';
 const PAYING_VET = 'KAMILE TORRES';
 const PANEL_ID = 'svext-panel';
 const WEBHOOK_TIMEOUT_MS = 10000;
 
-// Defaults — overridden by values saved in popup settings
 let WEBHOOK_URL = 'https://n8n-n8n.stlrvo.easypanel.host/webhook/e3dfce07-c096-4228-94bb-2a0f09d9f48c';
 let TOKEN = 'secret';
-
-// ============================================================
-// State machine
-// ============================================================
 
 const STATES = {
   IDLE: 'IDLE',
@@ -214,11 +209,11 @@ function validatePayload(payload) {
 // ============================================================
 
 // O fetch é delegado ao background service worker para escapar do
-// Content-Security-Policy da página do SimplesVet (connect-src).
-async function sendToN8N(payload) {
+// Content-Security-Policy da página do sistema (connect-src).
+async function sendToWebhook(payload) {
   return new Promise((resolve) => {
     chrome.runtime.sendMessage(
-      { type: 'SEND_TO_N8N', url: WEBHOOK_URL, payload, timeoutMs: WEBHOOK_TIMEOUT_MS },
+      { type: 'SEND_TO_WEBHOOK', url: WEBHOOK_URL, payload, timeoutMs: WEBHOOK_TIMEOUT_MS },
       (response) => {
         if (chrome.runtime.lastError) {
           resolve({ ok: false, error: chrome.runtime.lastError.message || 'Erro de extensão' });
@@ -380,7 +375,7 @@ function renderPanel() {
   panel.id = PANEL_ID;
   panel.innerHTML = `
     <div id="svext-header">
-      <span id="svext-title">🐾 VetSmart</span>
+      <span id="svext-title">🐾 um - AU</span>
       <button id="svext-btn-minimize" title="Minimizar">−</button>
     </div>
     <div id="svext-body">
@@ -576,7 +571,7 @@ async function handleEnviar() {
   setState(STATES.ENVIANDO);
   console.log(`${LOG} Enviando payload:`, payload);
 
-  const result = await sendToN8N(payload);
+  const result = await sendToWebhook(payload);
   isSending = false;
 
   if (result.ok) {
