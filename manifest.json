@@ -1,10 +1,26 @@
 {
   "manifest_version": 3,
-  "name": "VetSmart — SimplesVet para n8n",
-  "version": "1.0.0",
-  "description": "Captura dados de atendimento clínico no SimplesVet e envia para n8n.",
+  "name": "um - AU",
+  "version": "1.0.2",
+  "description": "Captura dados de atendimento clínico e envia para um webhook configurável.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "um-au@leandrofranco.dev",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["healthInfo", "personallyIdentifyingInfo"]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  },
   "icons": {
-    "16": "logo.png"
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
   },
   "background": {
     "service_worker": "background.js",
@@ -23,8 +39,12 @@
     }
   ],
   "action": {
-    "default_icon": "logo.png",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    },
     "default_popup": "popup.html",
-    "default_title": "VetSmart — Configurações"
+    "default_title": "um - AU — Configurações"
   }
 }
